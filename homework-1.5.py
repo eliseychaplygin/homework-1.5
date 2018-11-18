@@ -1,3 +1,5 @@
+import random
+
 class Animal:
 
   def __init__(self, name, weight):
@@ -7,53 +9,78 @@ class Animal:
   def feed(self):
     print(f'{self.name} накормлен(а)')
 
-class Cattle:
+  def collect(self):
+    res_collect = random.randint(1, 10)
+    print('Вы произвели действие с животным')
+    return res_collect
 
-  def milk(self):
-    print(f'Вы подоили {self.name}')
+  def get_hungry(self):
+    if random.randint(1, 11) % 2 == 0:
+      hungry = True
+    else:
+      hungry = False
+    return hungry
 
-class Bird:
 
-  def collect_eggs(self):
-    print(f'Вы собрали яйца у {self.name}')
-
-class Cow(Animal, Cattle):
+class Cow(Animal):
 
   def say(self):
     print('Муууу')
 
-class Goat(Animal, Cattle):
+  def collect(self):
+    vol_milk = random.randint(1, 10)
+    print(f'Вы подоили {self.name}')
+    return vol_milk
+
+class Goat(Animal):
 
   def say(self):
     print('Мееее')
 
+  def collect(self):
+    vol_milk = random.randint(1, 10)
+    print(f'Вы подоили {self.name}')
+    return vol_milk
+
 class Sheep(Animal):
 
   def cut(self):
+    vol_wool = random.randint(1, 10)
     print(f'Вы подстригли {self.name}')
+    return vol_wool
 
   def say(self):
     print('Бееее')
 
-class Chicken(Animal, Bird):
+class Chicken(Animal):
 
   def say(self):
     print('Ко-ко-ко')
 
-class Duck(Animal, Bird):
+  def collect(self):
+    vol_egg = random.randint(1, 10)
+    print(f'Вы собрали яйца у {self.name}')
+    return vol_egg
+
+class Duck(Animal):
 
   def say(self):
     print('Кря-кря')
 
-class Duck(Animal, Bird):
+  def collect(self):
+    vol_egg = random.randint(1, 10)
+    print(f'Вы собрали яйца у {self.name}')
+    return vol_egg
 
-  def say(self):
-    print('Кря-кря')
-
-class Goose(Animal, Bird):
+class Goose(Animal):
 
   def say(self):
     print('Га-га-га')
+
+  def collect(self):
+    vol_egg = random.randint(1, 10)
+    print(f'Вы собрали яйца у {self.name}')
+    return vol_egg
 
 
 goose_1 = Goose('Серый', 5)
@@ -68,16 +95,11 @@ goat_2 = Goat('Копыта', 10)
 duck = Duck('Кряква', 4)
 animal_list = [goose_1, goose_2, cow, sheep_1, sheep_2, chicken_1, chicken_2, goat_1, goat_2, duck]
 
-goose_gray.collect_eggs()
-goose_white.feed()
-cow.milk()
-sheep_1.cut()
-sheep_2.say()
-chicken_1.say()
-chicken_2.collect_eggs()
-goat_1.feed()
-goat_2.milk()
-duck.collect_eggs()
+def action_animals(animal_list):
+  for animal in animal_list:
+    if animal.get_hungry() == False:
+      animal.feed()
+    animal.collect()
 
 def total_weight(animal_list):
   total_weight = 0
@@ -91,3 +113,4 @@ def total_weight(animal_list):
   return print(f'Общий вес животных: {total_weight}, самое тяжелое животное {heaviest.name}')
 
 total_weight(animal_list)
+action_animals(animal_list)

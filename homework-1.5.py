@@ -52,6 +52,9 @@ class Sheep(Animal):
   def say(self):
     print('Бееее')
 
+  def collect(self):
+    pass
+
 class Chicken(Animal):
 
   def say(self):

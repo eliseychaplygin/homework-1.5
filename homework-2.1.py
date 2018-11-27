@@ -18,6 +18,7 @@ def get_components():
     return cook_book
 
 def get_shop_list_by_dishes(dishes, person_count):
+    cook_book = dishes
     shop_list = {}
     for dish in dishes:
         if dish in cook_book.keys():
@@ -27,3 +28,5 @@ def get_shop_list_by_dishes(dishes, person_count):
                 measure = i.get('measure')
                 shop_list[name_ingridient] = {measure: vol_ingridient * person_count}
     return print(shop_list)
+
+get_shop_list_by_dishes(get_components(), 2)

@@ -37,9 +37,7 @@ def search_file(dir_dict):
 
         print(f'Найдено {len(dir_dict)} совпадений')
 
-
-if __name__ == '__main__'
-    search_file(filter_sql_files(search_path()))
+search_file(filter_sql_files(search_path()))
 
 
 def run_safary():

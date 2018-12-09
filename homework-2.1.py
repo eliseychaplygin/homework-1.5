@@ -27,7 +27,11 @@ def get_shop_list_by_dishes(dishes, person_count, cook_book):
                 name_ingridient = i.get('ingridient_name')
                 vol_ingridient = i.get('quantity')
                 measure = i.get('measure')
-                shop_list[name_ingridient] = {measure: vol_ingridient * person_count}
+                if name_ingridient in shop_list:
+                    value = shop_list[name_ingridient]['quantity']
+                    shop_list[name_ingridient]['quantity'] = value * 2
+                else:
+                    shop_list[name_ingridient] = {'measure': measure, 'quantity': vol_ingridient * person_count}
     return pprint(shop_list)
 
 
